@@ -1,32 +1,37 @@
 import { StyleSheet, Text, View, TextInput, } from 'react-native'
+import { useForm, Controller } from 'react-hook-form';
 
 import React from 'react'
 
 
-const CustomInput = ({ value, setValue, placeholder, secureTextEntry }) => {
+const CustomInput = ({ control, name, rules = {}, placeholder, secureTextEntry }) => {
     return (
-        <View style={styles.container}>
-            <TextInput
-                value={value}
-                onChangeText={setValue}
-                placeholder={placeholder}
-                style={styles.input}
-                secureTextEntry={secureTextEntry}
-            />
-            {/* <Controller
-                control={control}
-                name="username"
-                render={({ field: { onChange, onBlur, value } }) => (
-                    <TextInput
-                        style={styles.input}
-                        onBlur={onBlur}
-                        onChangeText={onChange}
-                        value={value}
-                        placeholder='username'
-                    />
-                )}
-            /> */}
-        </View>
+        <Controller
+            control={control}
+            name={name}
+            rules={rules}
+            render={({ field: { value, onChange, onBlur }, fieldState: { error } }) => (
+                <>
+                    <View
+                        style={[
+                            styles.container,
+                            { borderColor: error ? 'red' : '#e8e8e8' },
+                        ]}>
+                        <TextInput
+                            value={value}
+                            onChangeText={onChange}
+                            onBlur={onBlur}
+                            placeholder={placeholder}
+                            style={styles.input}
+                            secureTextEntry={secureTextEntry}
+                        />
+                    </View>
+                    {error && (
+                        <Text style={{ color: 'red', alignSelf: 'stretch' }}>{error.message || 'Error'}</Text>
+                    )}
+                </>
+            )}
+        />
     );
 };
 
@@ -44,6 +49,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         marginVertical: 5,
 
+
+    },
+    input: {
 
     }
 })

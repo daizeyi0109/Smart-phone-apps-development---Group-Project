@@ -10,14 +10,14 @@ import SocialSignButton from '../../components/SocialSignButton';
 
 
 import { useNavigation } from '@react-navigation/native';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Contrller } from 'react-hook-form';
 
 import { Auth } from 'aws-amplify';
 
 
 const SignInScreen = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    // const [username, setUsername] = useState('');
+    // const [password, setPassword] = useState('');
 
     const [loading, setLoading] = useState(false)
 
@@ -25,10 +25,10 @@ const SignInScreen = () => {
 
     const navigation = useNavigation();
 
-    const { control, handleSubmit } = useForm();
+    const { control, handleSubmit, formState: { errors } } = useForm();
 
 
-
+    // formState 其实没用， 主要是组件的fieldState:{error}
 
     const onSignInPressed = async (data) => {
         // console.warn('Sign in button pressed')
@@ -70,8 +70,10 @@ const SignInScreen = () => {
             <View style={styles.root}>
                 <Image source={Logo} style={[styles.logo, { height: height * 0.3 }]} resizeMode='contain' />
 
-                <CustomInput placeholder='Username' value={username} setValue={setUsername} />
-                <CustomInput placeholder='Password' value={password} setValue={setPassword} secureTextEntry='True' />
+                <CustomInput placeholder='Username' name='username' control={control} rules={{ required: 'Username is required' }} />
+                <CustomInput placeholder='Password' name='password' control={control}
+                    rules={{ required: 'Password is required', minLength: { value: 3, message: 'Password should be minimum 3 characters long' } }}
+                    secureTextEntry='True' />
 
 
                 {/* <Controller

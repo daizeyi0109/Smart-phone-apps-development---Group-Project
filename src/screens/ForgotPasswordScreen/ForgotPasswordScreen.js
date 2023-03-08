@@ -8,13 +8,18 @@ import CustomButton from '../../components/CustomButton'
 import SocialSignButton from '../../components/SocialSignButton';
 import { useNavigation } from '@react-navigation/native';
 
+import { useForm } from 'react-hook-form';
+
+
 
 const ForgotPasswordScreen = () => {
-    const [username, setUsername] = useState('');
+    // const [username, setUsername] = useState('');
     const navigation = useNavigation();
 
+    const { control, handleSubmit, watch } = useForm();
 
-    const onSendPressed = () => {
+    const onSendPressed = (data) => {
+        console.warn(data);
         console.warn('Confirm button pressed')
         navigation.navigate('NewPassword')
     }
@@ -31,9 +36,25 @@ const ForgotPasswordScreen = () => {
             <View style={styles.root}>
                 <Text style={styles.title}>Reset your password</Text>
 
-                <CustomInput placeholder='Enter your Username' value={username} setValue={setUsername} />
+                {/* <CustomInput placeholder='Enter your Username' value={username} setValue={setUsername} /> */}
+                <CustomInput
+                    name="name"
+                    control={control}
+                    placeholder="Name"
+                    rules={{
+                        required: 'Name is required',
+                        minLength: {
+                            value: 3,
+                            message: 'Name should be at least 3 characters long',
+                        },
+                        maxLength: {
+                            value: 24,
+                            message: 'Name should be max 24 characters long',
+                        },
+                    }}
+                />
 
-                <CustomButton onPress={onSendPressed} text='Send' />
+                <CustomButton onPress={handleSubmit(onSendPressed)} text='Send' />
 
                 <CustomButton onPress={onBackPressed} text='Back to Sign In' type='TERTIARY' />
 
