@@ -1,7 +1,8 @@
-import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native'
+import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView, Alert } from 'react-native'
 import { useState } from 'react';
 import React from 'react'
 import { useNavigation } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
 
 import Logo from '../../../assets/images/Logo_2.png'
 import CustomInput from '../../components/CustomInput'
@@ -10,21 +11,43 @@ import SocialSignButton from '../../components/SocialSignButton';
 
 import { useForm } from 'react-hook-form';
 
+import { Auth } from 'aws-amplify';
+
 
 const ConfirmEmailScreen = () => {
     // const [code, setCode] = useState('');
+    const route = useRoute();
 
-    const { control, handleSubmit, watch } = useForm();
+    const { control, handleSubmit, watch } = useForm(
+        {
+            defaultValues: {
+                username: route.params.username,
+            }
+        }
+    );
+
+    const username = watch('username');
 
     const navigation = useNavigation();
 
 
-    const onConfirmPressed = (data) => {
-        console.warn(data);
-        navigation.navigate('Home')
+    const onConfirmPressed = async (data) => {
+        try {
+            const response = await Auth.confirmSignUp(data.username, data.code);
+            control.log(response);
+            navigation.navigate('SignIn')
+        } catch (error) {
+            Alert.alert('Oops', error.message)
+        }
     }
-    const onResendPressed = () => {
+    const onResendPressed = async () => {
         console.warn('Terms link pressed')
+        try {
+            await Auth.resendSignUp(username)
+            Alert.alert('Success', 'Code was resent to your email')
+        } catch (error) {
+            Alert.alert('Oops', error.message)
+        }
     }
     const onBackPressed = () => {
         console.warn('Conditions link pressed')
@@ -37,7 +60,14 @@ const ConfirmEmailScreen = () => {
                 <Text style={styles.title}>Confirm your Email</Text>
 
                 {/* <CustomInput placeholder='Enter your confirmationCode' value={code} setValue={setCode} /> */}
-
+                <CustomInput
+                    name="username"
+                    control={control}
+                    placeholder="Username"
+                    rules={{
+                        required: 'Username code is required',
+                    }}
+                />
                 <CustomInput
                     name="code"
                     control={control}

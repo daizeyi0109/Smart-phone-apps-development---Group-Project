@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, Alert } from 'react-native'
 import { useState } from 'react';
 import React from 'react'
 import { useNavigation } from '@react-navigation/native';
@@ -9,6 +9,8 @@ import CustomButton from '../../components/CustomButton'
 import SocialSignButton from '../../components/SocialSignButton';
 
 import { useForm } from 'react-hook-form';
+
+import { Auth } from 'aws-amplify';
 
 
 const EMAIL_REGEX =
@@ -34,9 +36,21 @@ const SignUpScreen = () => {
     const pwd = watch('password');
 
 
-    const onRegisterPressed = () => {
-        console.warn('Register button pressed')
-        navigation.navigate('ConfirmEmail')
+    const onRegisterPressed = async (data) => {
+        // console.warn('Register button pressed')
+        // navigation.navigate('ConfirmEmail')
+        const { username, password, email, name } = data
+        try {
+            const response = Auth.signUp({
+                username,
+                password,
+                attributes: { email, name },
+            })
+            console.log(response)
+            navigation.navigate('ConfirmEmail', { username })
+        } catch (error) {
+            Alert.alert('Oops', error.message)
+        }
     };
 
 
@@ -61,6 +75,7 @@ const SignUpScreen = () => {
                 <CustomInput placeholder='Email' value={email} setValue={setEmail} />
                 <CustomInput placeholder='Password' value={password} setValue={setPassword} secureTextEntry='True' />
                 <CustomInput placeholder='Repeat Password' value={passwordRepeat} setValue={setPasswordRepeat} secureTextEntry='True' /> */}
+
                 <CustomInput
                     name="name"
                     control={control}

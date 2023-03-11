@@ -36,22 +36,20 @@ const SignInScreen = () => {
 
         // navigation.navigate('Home')
 
-        // const response = await Auth.signIn(username, password);
-        // console.warn('Sign in button pressed')
-        console.log(data)
-        // if (loading) {
-        //     return
-        // }
-        // setLoading(true)
-        // try {
-        //     const response = await Auth.signIn(username, password);
-        //     console.log(username)
+        // const response = await Auth.signIn(data.username, data.password);
+        if (loading) {
+            return
+        }
+        setLoading(true)
+        try {
+            const response = await Auth.signIn(data.username, data.password);
+            console.log(data)
 
-        // } catch (error) {
-        //     // console.log('error signing in', error);
-        //     Alert.alert('Error', error.message)
-        // }
-        // setLoading(false)
+        } catch (error) {
+            // console.log('error signing in', error);
+            Alert.alert('Error', error.message)
+        }
+        setLoading(false)
     };
 
 

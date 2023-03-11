@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native'
+import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView, Alert } from 'react-native'
 import { useState } from 'react';
 import React from 'react'
 
@@ -6,8 +6,8 @@ import Logo from '../../../assets/images/Logo_2.png'
 import CustomInput from '../../components/CustomInput'
 import CustomButton from '../../components/CustomButton'
 import SocialSignButton from '../../components/SocialSignButton';
-import { useNavigation } from '@react-navigation/native';
-
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { Auth } from 'aws-amplify';
 import { useForm } from 'react-hook-form';
 
 
@@ -15,12 +15,23 @@ const NewPasswordScreen = () => {
     // const [code, setCode] = useState('');
     // const [newPassword, setNewPassword] = useState('');
     const navigation = useNavigation();
-    const { control, handleSubmit, watch } = useForm();
+    const route = useRoute();
 
-    const onSubmitPressed = (data) => {
-        console.warn(data);
-        console.warn('Confirm button pressed')
-        navigation.navigate('Home')
+    const { control, handleSubmit, watch } = useForm(
+        {
+            defaultValues: {
+                username: route.params.username
+            }
+        }
+    );
+
+    const onSubmitPressed = async (data) => {
+        try {
+            await Auth.forgotPasswordSubmit(data.username, data.code, data.password)
+            navigation.navigate('SignIn')
+        } catch (error) {
+            Alert.alert('Oops', error.message)
+        }
     }
     const onResendPressed = () => {
         console.warn('Terms link pressed')
@@ -34,7 +45,14 @@ const NewPasswordScreen = () => {
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.root}>
                 <Text style={styles.title}>New password</Text>
-
+                <CustomInput
+                    name="username"
+                    control={control}
+                    placeholder="Username"
+                    rules={{
+                        required: 'Username is required',
+                    }}
+                />
                 {/* <CustomInput placeholder='Enter Code' value={code} setValue={setCode} /> */}
                 <CustomInput
                     name="code"
@@ -47,7 +65,7 @@ const NewPasswordScreen = () => {
 
                 {/* <CustomInput placeholder='Enter your new password' value={newPassword} setValue={setNewPassword} /> */}
 
-                <CustomInput placeholder='Enter your new password' name='newPassword' control={control}
+                <CustomInput placeholder='Enter your new password' name='password' control={control}
                     rules={{
                         required: 'NewPassword is required',
                         minLength: {
