@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Button, View, Text, SafeAreaView, StyleSheet } from 'react-native';
 import Navigation from './src/navigation';
+import SearchResultScreen from './src/screens/SearchResultScreen';
 import { Amplify } from 'aws-amplify'
 
 import awsconfig from './src/aws-exports'
@@ -15,7 +16,8 @@ function App() {
       {/* <SignUpScreen /> */}
       {/* <ForgotPasswordScreen /> */}
       {/* <NewPasswordScreen /> */}
-      <Navigation />
+      {/* <Navigation /> */}
+      <SearchResultScreen />
     </SafeAreaView>
 
   );

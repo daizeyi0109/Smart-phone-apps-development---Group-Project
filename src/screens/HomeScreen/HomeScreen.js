@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, Text, ImageBackground, Button, Pressable, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, ImageBackground, Button, Pressable, ScrollView, FlatList } from 'react-native';
 import { Auth } from 'aws-amplify';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
 import Post from '../../components/Post/Post';
-
+import WaterfallFlow from 'react-native-waterfall-flow'
 import feed from '../../../assets/data/feed';
 
 
@@ -30,7 +30,7 @@ const HomeScreen = () => {
 
             {/* <View style={{ }}>
              */}
-            <View style={styles.container}>
+            <View style={styles.container} >
                 {/* <Text styles={{ fontSize: 24, alignSelf: 'center' }}>
                 Home,Sweet Home</Text> */}
 
@@ -70,7 +70,12 @@ const HomeScreen = () => {
             </View>
 
             <Post post={item} />
+
         </ScrollView>
+
+
+
+
     );
 }
 

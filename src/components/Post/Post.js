@@ -23,7 +23,7 @@ const Post = (props) => {
             <Image
                 // style={[styles.image, { height: height * 0.5 }]}
                 style={styles.image}
-                source={require('../../../assets/images_post/1.jpg')}
+                source={{ uri: post.image }}
             />
 
 
