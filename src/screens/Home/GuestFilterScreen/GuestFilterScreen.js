@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, Pressable } from 'react-native';
 // Icon
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const GuestFilterScreen = () => {
 
@@ -10,6 +11,7 @@ const GuestFilterScreen = () => {
     const [children, setChildren] = useState(0);
     const [infants, setInfants] = useState(0);
 
+    const navigation = useNavigation();
 
 
     return (
@@ -105,8 +107,36 @@ const GuestFilterScreen = () => {
                     </Pressable>
                 </View>
 
+
             </View>
 
+            <Pressable
+                onPress={() =>
+                    // navigation.navigate('Home', {
+                    //     screen: 'Explore',
+                    //     params: {
+                    //         screen: 'SearchResults',
+                    //         params: {
+                    //             guests: adults + children,
+                    //             viewport: route.params.viewport,
+                    //         }
+                    //     },
+                    // })
+                    navigation.navigate('SearchResult')
+                }
+                style={{
+                    marginBottom: 20,
+                    backgroundColor: 'rgba(78,0,233,0.7)',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    height: 50,
+                    marginHorizontal: 20,
+                    borderRadius: 10,
+                }}>
+                <Text style={{ fontSize: 20, color: 'white', fontWeight: 'bold' }}>
+                    Search
+                </Text>
+            </Pressable>
 
         </View>
     );

@@ -12,8 +12,9 @@ import NewPasswordScreen from '../screens/Authentication/NewPasswordScreen';
 import HomeScreen from '../screens/Home/HomeScreen/HomeScreen';
 import DestinationSearchScreen from '../screens/Home/DestinationSearchScreen/DestinationSearchScreen';
 import GuestFilterScreen from '../screens/Home/GuestFilterScreen/GuestFilterScreen';
+import SearchResultScreen from '../screens/Home/SearchResultScreen/SearchResultScreen'
 
-import homeTab from './homeTab';
+import homeTab from './HomeTab';
 
 import { Auth, Hub } from 'aws-amplify';
 
@@ -74,6 +75,8 @@ const Navigation = () => {
                 {/* <Stack.Screen name="Search" component={DestinationSearchScreen} /> */}
                 <Stack.Screen name="DestinationSearch" component={DestinationSearchScreen} />
                 <Stack.Screen name="GuestFilter" component={GuestFilterScreen} />
+                <Stack.Screen name="SearchResult" component={SearchResultScreen} />
+
 
 
 
