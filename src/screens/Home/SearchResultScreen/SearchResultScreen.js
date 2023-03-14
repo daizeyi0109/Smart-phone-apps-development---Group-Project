@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, FlatList, Text } from 'react-native';
-import feed from '../../../assets/data/feed';
-import Post from '../../components/Post/Post';
+import feed from '../../../../assets/data/feed';
+import Post from '../../../components/Post/Post';
 // import Post from '../../components/Post/Post';
 const render_items = feed;
 const SearchResultScreen = (props) => {

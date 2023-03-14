@@ -3,15 +3,17 @@ import { View, StyleSheet, Text, ImageBackground, Button, Pressable, ScrollView,
 import { Auth } from 'aws-amplify';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
-import Post from '../../components/Post/Post';
-import WaterfallFlow from 'react-native-waterfall-flow'
-import feed from '../../../assets/data/feed';
+import { AntDesign } from '@expo/vector-icons';
+import Post from '../../../components/Post/Post';
+
+import feed from '../../../../assets/data/feed';
 
 
 const item = feed[1];
 
 const HomeScreen = () => {
     const navigation = useNavigation();
+
     const signOut = () => {
         Auth.signOut();
         navigation.navigate('SignIn')
@@ -19,10 +21,12 @@ const HomeScreen = () => {
 
     const onExplorePressed = () => {
         console.warn('Explore link pressed')
+        navigation.navigate('DestinationSearch')
     }
 
     const onSearchPressed = () => {
         console.warn('Search link pressed')
+        navigation.navigate('DestinationSearch')
     }
 
     return (
@@ -40,7 +44,7 @@ const HomeScreen = () => {
                     <Text style={styles.search_buttonText}>Where are you going? </Text>
                 </Pressable>
 
-                <ImageBackground source={require('../../../assets/images/bgc.jpg')} style={styles.image}>
+                <ImageBackground source={require('../../../../assets/images/bgc.jpg')} style={styles.image}>
                     {/* Title */}
                     <Text style={styles.title}>Go Near</Text>
                     {/* Button */}
@@ -48,7 +52,7 @@ const HomeScreen = () => {
                         <Text style={styles.buttonText}>Explore nearby stays</Text>
                     </Pressable>
                 </ImageBackground>
-                {/* <Text
+                <Text
                     onPress={signOut}
                     style={{
                         width: '100%',
@@ -59,17 +63,24 @@ const HomeScreen = () => {
                         fontSize: 20,
                     }}>
                     Sign out
-                </Text> */}
+                </Text>
 
 
             </View>
 
 
             <View style={styles.likeTextContainer}>
+                <AntDesign name="like1" size={24} color="#e50e00" />
                 <Text style={styles.likeText}>You may like</Text>
             </View>
 
             <Post post={item} />
+
+            <FlatList
+                data={feed}
+                renderItem={({ item }) => <Post post={item} />}
+                keyExtractor={item => item.id}
+            />
 
         </ScrollView>
 
@@ -128,29 +139,36 @@ const styles = StyleSheet.create({
         height: '8%',
         borderRadius: 25,
 
+        borderWidth: 2,
+
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
         zIndex: 100
 
+
     },
     search_buttonText: {
+        marginLeft: 10,
         fontSize: 15,
         fontWeight: 'bold',
     },
 
     likeTextContainer: {
         // alignSelf: 'flex-start',
-        width: 200,
-        height: 50,
-        marginTop: 20,
-        marginHorizontal: 10,
-        justifyContent: 'center',
+        // width: 200,
+        height: 30,
+        marginTop: 10,
+        marginHorizontal: 14,
+        // justifyContent: 'center',
         // backgroundColor: 'beige',
         // borderWidth: 5,
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     likeText: {
+        marginLeft: 10,
         fontSize: 20,
         fontFamily: 'Arial Rounded MT Bold',
     }

@@ -7,19 +7,13 @@ const Post = (props) => {
 
     const post = props.post
 
-    // console.log(post);
-    // console.log(post);
 
     const goToPostPage = () => {
         console.warn('ToPost button pressed')
     }
     return (
         <Pressable onPress={goToPostPage} style={styles.container}>
-            {/* Image  */}
-            {/* <Image
-                style={styles.image}
-                source={{ uri: post.image }}
-            /> */}
+
             <Image
                 // style={[styles.image, { height: height * 0.5 }]}
                 style={styles.image}
@@ -36,7 +30,6 @@ const Post = (props) => {
             {/* Type & Description */}
             <Text style={styles.description} numberOfLines={2}>
                 {post.type}. {post.title}
-                {/* React Native combines the best parts of native development with React, a best-in-class JavaScript library for building user interfaces. */}
             </Text>
 
             {/*  Old price & new price */}
@@ -44,14 +37,11 @@ const Post = (props) => {
                 <Text style={styles.oldPrice}>${post.oldPrice}</Text>
                 <Text style={styles.price}>  ${post.newPrice} </Text>
                 / night
-                {/* <Text style={styles.oldPrice}>$300</Text>
-                <Text style={styles.price}>  $250 </Text>
-                / night */}
+
             </Text>
 
             {/*  Total price */}
             <Text style={styles.totalPrice}>${post.newPrice * days} total</Text>
-            {/* <Text style={styles.totalPrice}>$300 total</Text> */}
         </Pressable>
     );
 }

@@ -1,8 +1,12 @@
 import * as React from 'react';
 import { Button, View, Text, SafeAreaView, StyleSheet } from 'react-native';
 import Navigation from './src/navigation';
-import SearchResultScreen from './src/screens/SearchResultScreen';
+
 import { Amplify } from 'aws-amplify'
+
+// import SearchResultScreen from './src/screens/SearchResultScreen';
+// import DestinationSearchScreen from './src/screens/Home/HomeScreen/DestinationSearchScreen';
+// import GuestFilterScreen from './src/screens/Home/GuestFilterScreen';
 
 import awsconfig from './src/aws-exports'
 
@@ -16,8 +20,9 @@ function App() {
       {/* <SignUpScreen /> */}
       {/* <ForgotPasswordScreen /> */}
       {/* <NewPasswordScreen /> */}
-      {/* <Navigation /> */}
-      <SearchResultScreen />
+      <Navigation />
+      {/* <DestinationSearchScreen /> */}
+      {/* <GuestFilterScreen /> */}
     </SafeAreaView>
 
   );
@@ -27,7 +32,8 @@ const styles = StyleSheet.create({
 
   root: {
     flex: 1,
-    backgroundColor: '#F9FbFC'
+    backgroundColor: '#F9FbFC',
+    fontFamily: 'Arial Rounded MT Bold'
   }
 });
 

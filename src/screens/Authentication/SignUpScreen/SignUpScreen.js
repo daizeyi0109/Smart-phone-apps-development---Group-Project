@@ -4,9 +4,9 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native';
 
 
-import CustomInput from '../../components/CustomInput'
-import CustomButton from '../../components/CustomButton'
-import SocialSignButton from '../../components/SocialSignButton';
+import CustomInput from '../../../components/CustomInput/CustomInput'
+import CustomButton from '../../../components/CustomButton/CustomButton'
+import SocialSignButton from '../../../components/SocialSignButton/SocialSignButton';
 
 import { useForm } from 'react-hook-form';
 

@@ -2,10 +2,10 @@ import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView, Alert }
 import { useState } from 'react';
 import React from 'react'
 
-import Logo from '../../../assets/images/Logo_2.png'
-import CustomInput from '../../components/CustomInput'
-import CustomButton from '../../components/CustomButton'
-import SocialSignButton from '../../components/SocialSignButton';
+// import Logo from '../../../assets/images/Logo_2.png'
+import CustomInput from '../../../components/CustomButton/CustomButton'
+import CustomButton from '../../../components/CustomButton/CustomButton'
+// import SocialSignButton from '../../../components/SocialSignButton';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { useForm } from 'react-hook-form';

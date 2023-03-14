@@ -4,12 +4,16 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
-import SignInScreen from '../screens/SignInScreen';
-import SignUpScreen from '../screens/SignUpScreen/SignUpScreen';
-import ConfirmEmailScreen from '../screens/ConfirmEmailScreen';
-import ForgotPasswordScreen from '../screens/ForgotPasswordScreen'
-import NewPasswordScreen from '../screens/NewPasswordScreen';
-import HomeScreen from '../screens/HomeScreen';
+import SignInScreen from '../screens/Authentication/SignInScreen/SignInScreen';
+import SignUpScreen from '../screens/Authentication/SignUpScreen/SignUpScreen';
+import ConfirmEmailScreen from '../screens/Authentication/ConfirmEmailScreen';
+import ForgotPasswordScreen from '../screens/Authentication/ForgotPasswordScreen'
+import NewPasswordScreen from '../screens/Authentication/NewPasswordScreen';
+import HomeScreen from '../screens/Home/HomeScreen/HomeScreen';
+import DestinationSearchScreen from '../screens/Home/DestinationSearchScreen/DestinationSearchScreen';
+import GuestFilterScreen from '../screens/Home/GuestFilterScreen/GuestFilterScreen';
+
+import homeTab from './homeTab';
 
 import { Auth, Hub } from 'aws-amplify';
 
@@ -59,19 +63,20 @@ const Navigation = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
-                {
-                    user ? (<Stack.Screen name="Home" component={HomeScreen} />)
-                        : (
-                            <>
-                                <Stack.Screen name="SignIn" component={SignInScreen} />
-                                <Stack.Screen name="SignUp" component={SignUpScreen} />
-                                <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} />
-                                <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
-                                <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
-                                <Stack.Screen name="Home" component={HomeScreen} />
-                            </>
-                        )
-                }
+
+                <Stack.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+                <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
+                <Stack.Screen name='HomeTab' component={homeTab}></Stack.Screen>
+                <Stack.Screen name="Home" component={HomeScreen} />
+                {/* <Stack.Screen name="Search" component={DestinationSearchScreen} /> */}
+                <Stack.Screen name="DestinationSearch" component={DestinationSearchScreen} />
+                <Stack.Screen name="GuestFilter" component={GuestFilterScreen} />
+
+
+
 
             </Stack.Navigator>
         </NavigationContainer>
@@ -83,3 +88,19 @@ const Navigation = () => {
 const styles = StyleSheet.create({})
 
 export default Navigation;
+
+
+
+// user ? (<Stack.Screen name="Home" component={HomeScreen} />)
+//     : (
+//         <>
+//             <Stack.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false }} />
+//             <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false }} />
+//             <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} options={{ headerShown: false }} />
+//             <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+//             <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
+//             <Stack.Screen name="Home" component={HomeScreen} />
+//             {/* <Stack.Screen name="Search" component={DestinationSearchScreen} /> */}
+//             {/* <Stack.Screen name="DestinationSearch" component={DestinationSearchScreen} /> */}
+//         </>
+//     )
