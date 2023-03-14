@@ -122,7 +122,18 @@ const GuestFilterScreen = () => {
                     //         }
                     //     },
                     // })
-                    navigation.navigate('SearchResult')
+                    // navigation.navigate('HomeTab', {
+                    //     screen: 'Explore',
+                    //     params: {
+                    //         screen: 'SearchResult'
+                    //     }
+
+                    // }),
+                    navigation.navigate('Explore', {
+                        screen: 'SearchResults'
+                    })
+
+
                 }
                 style={{
                     marginBottom: 20,
@@ -138,7 +149,7 @@ const GuestFilterScreen = () => {
                 </Text>
             </Pressable>
 
-        </View>
+        </View >
     );
 }
 

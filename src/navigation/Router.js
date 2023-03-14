@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, StyleSheet, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Ionicons } from '@expo/vector-icons';
 
 
 import SignInScreen from '../screens/Authentication/SignInScreen/SignInScreen';
@@ -63,19 +64,44 @@ const Navigation = () => {
 
     return (
         <NavigationContainer>
-            <Stack.Navigator screenOptions={{ headerShown: false }}>
+            {/* <Stack.Navigator screenOptions={{ headerShown: false }}> */}
+            <Stack.Navigator>
 
                 <Stack.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} options={{ headerShown: false }} />
-                <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
-                <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
-                <Stack.Screen name='HomeTab' component={homeTab}></Stack.Screen>
-                <Stack.Screen name="Home" component={HomeScreen} />
+                <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="NewPassword" component={NewPasswordScreen} options={{ headerShown: false }} />
+                <Stack.Screen name='HomeTab' component={homeTab}
+                    options={{
+                        headerTransparent: true,
+                        headerTitle: "",
+                        headerBackTitle: "",
+                        gestureEnabled: false,
+                        headerShown: false
+                    }} />
+                {/* <Stack.Screen name="Home" component={HomeScreen} /> */}
                 {/* <Stack.Screen name="Search" component={DestinationSearchScreen} /> */}
-                <Stack.Screen name="DestinationSearch" component={DestinationSearchScreen} />
-                <Stack.Screen name="GuestFilter" component={GuestFilterScreen} />
-                <Stack.Screen name="SearchResult" component={SearchResultScreen} />
+                <Stack.Screen name="DestinationSearch" component={DestinationSearchScreen}
+                    options={{
+                        headerTransparent: false,
+                        headerTitle: "",
+                        headerBackTitle: ""
+                    }} />
+                <Stack.Screen name="GuestFilter" component={GuestFilterScreen}
+                    options={() => ({
+                        headerTransparent: false,
+                        headerTitle: "",
+                        headerBackTitle: "",
+                    })}
+                />
+                {/* <Stack.Screen name="SearchResult" component={SearchResultScreen}
+                    options={() => ({
+                        headerTransparent: false,
+                        headerTitle: "",
+                        headerBackTitle: "",
+                    })}
+                /> */}
 
 
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Button, View, Text, SafeAreaView, StyleSheet } from 'react-native';
-import Navigation from './src/navigation';
+import Navigation from './src/navigation/Router';
 
 import { Amplify } from 'aws-amplify'
 

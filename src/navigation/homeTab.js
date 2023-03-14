@@ -8,6 +8,7 @@ import HomeScreen from '../screens/Home/HomeScreen';
 import ProfileScreen from '../screens/Profile/ProfileScreen';
 import ChatScreen from '../screens/Chat/ChatScreen';
 import SaveScreen from '../screens/Save/SaveScreen';
+import ExploreNavigator from './ExploreNavigator';
 
 
 const Tab = createBottomTabNavigator();
@@ -16,14 +17,14 @@ const HomeTab = () => {
     return (
         // <NavigationContainer>
         <Tab.Navigator
-            initialRouteName='Home'
+            initialRouteName='Explore'
             shifting={true}
             screenOptions={({ route }) => ({
 
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
 
-                    if (route.name === "Home") {
+                    if (route.name === "Explore") {
                         iconName = focused ? "ios-home-outline" : "ios-home-sharp";
                     }
                     else if (route.name === "Chat") {
@@ -43,15 +44,23 @@ const HomeTab = () => {
                 },
                 tabBarActiveTintColor: "rgba(78,0,233,0.7)",
                 tabBarInactiveTintColor: "gray",
-                tabBarShowIcon: "true",
+                // tabBarShowIcon: "true",
                 // headerTintColor: "white",
                 // headerStyle: { backgroundColor: 'rgba(78,0,233,0.7)' },
                 // tabBarStyle:{backgroundColor:'rgba(0,0,0,0.7)'},
                 // headerShown: false,
-                initialRouteName: "Recommend",
+                // initialRouteName: "Recommend",
+
+                headerTransparent: true,
+                headerTitle: "",
+                headerBackTitle: "",
+                headerBackTitleVisible: true,
+                gestureEnabled: false,
+                headerShown: false
+
             })}>
 
-            <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+            <Tab.Screen name="Explore" component={ExploreNavigator} options={{ headerShown: false }} />
             <Tab.Screen name="Chat" component={ChatScreen} options={{ headerShown: false }} />
             <Tab.Screen name="Save" component={SaveScreen} options={{ headerShown: false }} />
             <Tab.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} />
