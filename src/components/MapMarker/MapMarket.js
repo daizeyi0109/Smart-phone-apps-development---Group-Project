@@ -10,8 +10,6 @@ const MapMarket = (props) => {
     const isSelected = props.isSelected
     console.log(isSelected)
 
-
-
     return (
         <Marker
             coordinate={coordinate} onPress={onPress}>

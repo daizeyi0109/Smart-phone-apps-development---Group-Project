@@ -10,6 +10,7 @@ const SearchResultScreen = (props) => {
     const renderItem = ({ item }) => (
         <Post post={item} />
     );
+
     return (
         <View>
             <FlatList

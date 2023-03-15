@@ -7,6 +7,7 @@ import { Amplify } from 'aws-amplify'
 // import SearchResultScreen from './src/screens/SearchResultScreen';
 // import DestinationSearchScreen from './src/screens/Home/HomeScreen/DestinationSearchScreen';
 // import GuestFilterScreen from './src/screens/Home/GuestFilterScreen';
+import SearchResultMap from './src/screens/Home/SearchResultMap/SearchResultMap';
 
 import awsconfig from './src/aws-exports'
 
@@ -20,7 +21,8 @@ function App() {
       {/* <SignUpScreen /> */}
       {/* <ForgotPasswordScreen /> */}
       {/* <NewPasswordScreen /> */}
-      <Navigation />
+      {/* <Navigation /> */}
+      <SearchResultMap />
       {/* <DestinationSearchScreen /> */}
       {/* <GuestFilterScreen /> */}
     </SafeAreaView>
