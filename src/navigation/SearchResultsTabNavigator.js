@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import SearchResults from '../screens/Home/SearchResultScreen/SearchResultScreen';
 import SearchResultsMap from '../screens/Home/SearchResultMap/SearchResultMap';
+import PostScreen from "../screens/Home/PostScreen/PostScreen";
 import { useRoute } from "@react-navigation/native";
 
 const Tab = createMaterialTopTabNavigator();
@@ -30,7 +31,7 @@ const SearchResultsTabNavigator = (props) => {
                 )}
             </Tab.Screen> */}
             <Tab.Screen name={'SearchResults'} component={SearchResults} />
-            <Tab.Screen name={'SearchResultsMap'} component={SearchResultsMap} />
+            <Tab.Screen name={'SearchResultsMap'} component={PostScreen} />
 
 
         </Tab.Navigator>

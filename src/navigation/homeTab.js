@@ -61,7 +61,7 @@ const HomeTab = () => {
 
             })}>
 
-            <Tab.Screen name="Explore" component={SearchResultMap} options={{ headerShown: false }} />
+            <Tab.Screen name="Explore" component={ExploreNavigator} options={{ headerShown: false }} />
             <Tab.Screen name="Chat" component={ChatScreen} options={{ headerShown: false }} />
             <Tab.Screen name="Save" component={SaveScreen} options={{ headerShown: false }} />
             <Tab.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} />
