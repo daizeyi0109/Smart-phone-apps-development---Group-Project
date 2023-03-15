@@ -9,6 +9,7 @@ import ProfileScreen from '../screens/Profile/ProfileScreen';
 import ChatScreen from '../screens/Chat/ChatScreen';
 import SaveScreen from '../screens/Save/SaveScreen';
 import ExploreNavigator from './ExploreNavigator';
+import SearchResultMap from '../screens/Home/SearchResultMap/SearchResultMap';
 
 
 const Tab = createBottomTabNavigator();
@@ -60,7 +61,7 @@ const HomeTab = () => {
 
             })}>
 
-            <Tab.Screen name="Explore" component={ExploreNavigator} options={{ headerShown: false }} />
+            <Tab.Screen name="Explore" component={SearchResultMap} options={{ headerShown: false }} />
             <Tab.Screen name="Chat" component={ChatScreen} options={{ headerShown: false }} />
             <Tab.Screen name="Save" component={SaveScreen} options={{ headerShown: false }} />
             <Tab.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} />
