@@ -31,7 +31,7 @@ const SearchResultsTabNavigator = (props) => {
                 )}
             </Tab.Screen> */}
             <Tab.Screen name={'SearchResults'} component={SearchResults} />
-            <Tab.Screen name={'SearchResultsMap'} component={PostScreen} />
+            <Tab.Screen name={'SearchResultsMap'} component={SearchResultsMap} />
 
 
         </Tab.Navigator>

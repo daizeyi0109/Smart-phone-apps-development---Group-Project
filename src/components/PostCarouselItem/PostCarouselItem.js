@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Image, Pressable, Text, useWindowDimensions, } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const PostCarouselItem = (props) => {
 
@@ -9,9 +10,13 @@ const PostCarouselItem = (props) => {
     const width = useWindowDimensions().width;
 
 
+    const navigation = useNavigation()
     const goToPostPage = () => {
         console.warn('ToPost button pressed')
+        navigation.navigate('Post', { postID: post.id })
+
     }
+
     return (
         <Pressable onPress={goToPostPage} style={[styles.container, { width: width - 60 }]}>
             <View style={styles.innerContainer}>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Image, Pressable, Text, useWindowDimensions, } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const Post = (props) => {
 
@@ -7,9 +8,11 @@ const Post = (props) => {
 
     const post = props.post
 
-
+    const navigation = useNavigation()
     const goToPostPage = () => {
         console.warn('ToPost button pressed')
+        navigation.navigate('Post', { postID: post.id })
+
     }
     return (
         <Pressable onPress={goToPostPage} style={styles.container}>

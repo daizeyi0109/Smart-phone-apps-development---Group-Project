@@ -14,6 +14,7 @@ import HomeScreen from '../screens/Home/HomeScreen/HomeScreen';
 import DestinationSearchScreen from '../screens/Home/DestinationSearchScreen/DestinationSearchScreen';
 import GuestFilterScreen from '../screens/Home/GuestFilterScreen/GuestFilterScreen';
 import SearchResultScreen from '../screens/Home/SearchResultScreen/SearchResultScreen'
+import PostScreen from "../screens/Home/PostScreen/PostScreen";
 
 import homeTab from './HomeTab';
 
@@ -94,6 +95,13 @@ const Navigation = () => {
                         headerTitle: "",
                         headerBackTitle: "",
                     })}
+                />
+                <Stack.Screen
+                    name={"Post"}
+                    component={PostScreen}
+                    options={{
+                        title: "Accommodation"
+                    }}
                 />
                 {/* <Stack.Screen name="SearchResult" component={SearchResultScreen}
                     options={() => ({
