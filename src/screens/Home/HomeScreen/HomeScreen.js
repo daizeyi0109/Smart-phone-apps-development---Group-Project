@@ -52,18 +52,7 @@ const HomeScreen = () => {
                         <Text style={styles.buttonText}>Explore nearby stays</Text>
                     </Pressable>
                 </ImageBackground>
-                <Text
-                    onPress={signOut}
-                    style={{
-                        width: '100%',
-                        textAlign: 'center',
-                        color: 'red',
-                        marginTop: 'auto',
-                        marginVertical: 20,
-                        fontSize: 20,
-                    }}>
-                    Sign out
-                </Text>
+
 
 
             </View>

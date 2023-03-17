@@ -7,12 +7,15 @@ import { Marker } from 'react-native-maps'
 // component
 import MapMarket from '../../../components/MapMarker/MapMarket'
 import PostCarouselItem from '../../../components/PostCarouselItem/PostCarouselItem';
-
+// AWS
+import { API, graphqlOperation } from 'aws-amplify';
+import * as queries from '../../../graphql/queries';
 // Data
-import place from '../../../../assets/data/feed'
+// import place from '../../../../assets/data/feed'
 
 const SearchResultMap = () => {
     const [selectedPlace, setSelectedPlace] = useState()
+    const [post, setPost] = useState([]);
 
     const width = useWindowDimensions().width
 
@@ -28,28 +31,46 @@ const SearchResultMap = () => {
         }
     })
 
+
+    useEffect(() => {
+        const fetchPost = async () => {
+            try {
+                const postResults = await API.graphql(
+                    graphqlOperation(queries.listPosts)
+                )
+                console.log('postResults')
+                console.log(postResults)
+                setPost(postResults.data.listPosts.items)
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchPost()
+    }, [])
+
+
     useEffect(() => {
         if (!selectedPlace || !flatlist) {
             return
         }
-        const index = place.findIndex(place => place.id === selectedPlace)
+        const index = post.findIndex(place => place.id === selectedPlace)
         flatlist.current.scrollToIndex({ index })
         // Alert.alert(selectedPlace)
         // console.log(flatlist)
 
-        const selectedPlaceItem = place[index];
+        const selectedPlaceItem = post[index];
         const region = {
-            latitude: selectedPlaceItem.coordinate.latitude,
-            longitude: selectedPlaceItem.coordinate.longitude,
-            latitudeDelta: 0.8,
-            longitudeDelta: 0.8,
+            latitude: selectedPlaceItem.latitude,
+            longitude: selectedPlaceItem.longitude,
+            latitudeDelta: 0.0035,
+            longitudeDelta: 0.0035,
         }
-        // console.log(selectedPlaceItem)
-        // console.log(selectedPlaceItem.latitude)
-        // console.log(selectedPlaceItem.longitude)
-        // console.log(region)
         map.current.animateToRegion(region);
     }, [selectedPlace])
+
+
+
+
 
 
 
@@ -64,18 +85,18 @@ const SearchResultMap = () => {
                 style={styles.map}
                 provider={PROVIDER_GOOGLE}
                 initialRegion={{
-                    latitude: 28.3279822,
-                    longitude: -16.5124847,
-                    latitudeDelta: 0.8,
-                    longitudeDelta: 0.8,
+                    latitude: 22.283639171322562,
+                    longitude: 114.13658654870478,
+                    latitudeDelta: 0.045,
+                    longitudeDelta: 0.045,
                 }} >
 
 
                 {/* MapMarket */}
-                {place.map((item, index) => {
+                {post.map((item, index) => {
                     return (
                         <MapMarket
-                            coordinate={item.coordinate}
+                            coordinate={{ latitude: item.latitude, longitude: item.longitude }}
                             price={item.newPrice}
                             isSelected={selectedPlace === item.id}
                             onPress={() => setSelectedPlace(item.id)}
@@ -90,7 +111,7 @@ const SearchResultMap = () => {
                 {/* <PostCarouselItem post={place[0]} /> */}
                 <FlatList
                     ref={flatlist}
-                    data={place}
+                    data={post}
                     renderItem={renderItem}
                     keyExtractor={item => item.id}
                     horizontal
