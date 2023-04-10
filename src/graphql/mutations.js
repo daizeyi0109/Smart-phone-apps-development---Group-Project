@@ -19,6 +19,7 @@ export const createPost = /* GraphQL */ `
       newPrice
       latitude
       longitude
+      place
       createdAt
       updatedAt
     }
@@ -42,6 +43,7 @@ export const updatePost = /* GraphQL */ `
       newPrice
       latitude
       longitude
+      place
       createdAt
       updatedAt
     }
@@ -65,6 +67,7 @@ export const deletePost = /* GraphQL */ `
       newPrice
       latitude
       longitude
+      place
       createdAt
       updatedAt
     }

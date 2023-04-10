@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text } from "react-native";
 // import DetailedPost from '../../components/DetailedPost';
 import DetailedPost from "../../../components/DetailedPost/DetailedPost";
 import { useRoute } from '@react-navigation/native';
+import { API, graphqlOperation } from 'aws-amplify';
+import * as queries from '../../../graphql/queries';
 
 
 import places from '../../../../assets/data/feed'
@@ -11,16 +13,42 @@ import places from '../../../../assets/data/feed'
 const PostScreen = (props) => {
     const route = useRoute();
 
-
+    console.log("PostScreen")
     console.log(route.params.postID)
 
-    const post_0 = places[route.params.postID]
-    // const post = places.find(places => places.id === route.params.postId);
-    // console.log(places.find(place => place.id === route.params.postId))
+
+    const post_id = route.params.postID
+
+    const [post, setPost] = useState();
+
+
+    // useEffect(() => {
+    //     const fetchPost = async () => {
+    //         try {
+    //             const postResults = await API.graphql(
+    //                 graphqlOperation(queries.listPosts, {
+    //                     filter: {
+    //                         id: {
+    //                             eq: post_id
+    //                         }
+    //                     }
+    //                 })
+    //             )
+    //             // console.log('postResults_test_teset')
+
+    //             console.log(postResults)
+    //             setPost(postResults.data.listPosts.items)
+    //             console.log(post)
+    //         } catch (error) {
+    //             console.error(error);
+    //         }
+    //     }
+    //     fetchPost()
+    // })
 
     return (
         <View style={{ backgroundColor: 'white' }}>
-            <DetailedPost post={post_0} />
+            <DetailedPost postID={post_id} />
         </View>
     );
 };

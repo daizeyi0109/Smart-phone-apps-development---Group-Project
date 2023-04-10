@@ -1,43 +1,89 @@
-import React from 'react';
-import { View, StyleSheet, ScrollView, Image, Text } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, ScrollView, Image, Text, ActivityIndicator } from 'react-native';
+import { API, graphqlOperation } from 'aws-amplify';
+// import * as queries from '../../../graphql/queries';
+import * as queries from '../../graphql/queries';
 
 const DetailedPost = (props) => {
-    const post = props.post;
-    return (
-        <ScrollView>
-            <View style={styles.container}>
-                {/* Image  */}
-                <Image
-                    style={styles.image}
-                    source={{ uri: post.image }}
-                />
+    const postID = props.postID;
 
-                {/* Bed & Bedroom  */}
-                <Text style={styles.bedrooms}>
-                    {post.bed} bed {post.bedroom} bedroom
-                </Text>
+    console.log(postID)
+    const [post, setPost] = useState();
+    const [loading, setLoading] = useState(true);
 
-                {/* Type & Description */}
-                <Text style={styles.description} numberOfLines={2}>
-                    {post.type}. {post.title}
-                </Text>
+    useEffect(() => {
+        const fetchPost = async () => {
+            try {
+                const postResults = await API.graphql(
+                    graphqlOperation(queries.listPosts, {
+                        filter: {
+                            id: {
+                                eq: postID
+                            }
+                        }
+                    })
+                )
+                console.log(postResults)
+                setPost(postResults.data.listPosts.items)
+                setLoading(false);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchPost()
+    })
 
-                {/*  Old price & new price */}
-                <Text style={styles.prices}>
-                    <Text style={styles.oldPrice}>${post.oldPrice}</Text>
-                    <Text style={styles.price}>  ${post.newPrice} </Text>
-                    / night
-                </Text>
+    if (loading) {
+        return <ActivityIndicator />;
+    }
 
-                {/*  Total price */}
-                <Text style={styles.totalPrice}>${post.totalPrice} total</Text>
+    if (post === undefined) {
+        return <Text>No data available</Text>;
+    }
+    else {
+        console.log('111')
+        console.log(post[0].image)
+        return (
+            <ScrollView>
+                <View style={styles.container}>
+                    {/* Image  */}
+                    <Image
+                        style={styles.image}
+                        source={{ uri: post[0].image }}
+                    />
 
-                <Text style={styles.longDescription}>
-                    {post.description}
-                </Text>
-            </View>
-        </ScrollView>
-    );
+                    {/* Bed & Bedroom  */}
+                    <Text style={styles.bedrooms}>
+                        {post[0].bed} bed {post[0].bedroom} bedroom
+                    </Text>
+
+                    {/* Type & Description */}
+                    <Text style={styles.description} numberOfLines={2}>
+                        {post[0].type}. {post[0].title}
+                    </Text>
+
+                    {/*  Old price & new price */}
+                    <Text style={styles.prices}>
+                        <Text style={styles.oldPrice}>${post[0].oldPrice}</Text>
+                        <Text style={styles.price}>  ${post[0].newPrice} </Text>
+                        / night
+                    </Text>
+
+                    {/*  Total price */}
+                    <Text style={styles.totalPrice}>${post[0].totalPrice} total</Text>
+
+                    <Text style={styles.longDescription}>
+                        {post[0].description}
+                    </Text>
+                </View>
+            </ScrollView>
+        );
+
+    }
+
+
+
+
 }
 
 const styles = StyleSheet.create({

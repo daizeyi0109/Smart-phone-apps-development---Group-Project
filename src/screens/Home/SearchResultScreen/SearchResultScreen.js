@@ -5,18 +5,46 @@ import Post from '../../../components/Post/Post';
 import { API, graphqlOperation } from 'aws-amplify';
 import * as queries from '../../../graphql/queries';
 // import Post from '../../components/Post/Post';
+import { useRoute } from '@react-navigation/native';
 const render_items = feed;
 const SearchResultScreen = (props) => {
     const [post, setPost] = useState();
+
+    const route = useRoute()
+    // console.log(route.params)
+
+    const { guests, viewport } = props
+
 
     useEffect(() => {
         const fetchPost = async () => {
             try {
                 const postResults = await API.graphql(
-                    graphqlOperation(queries.listPosts)
+                    graphqlOperation(queries.listPosts, {
+                        filter: {
+                            and: {
+                                maxGuests: {
+                                    ge: guests
+                                },
+                                latitude: {
+                                    between: [
+                                        viewport.southwest.lat,
+                                        viewport.northeast.lat
+                                    ],
+                                },
+                                longitude: {
+                                    between: [
+                                        viewport.southwest.lng,
+                                        viewport.northeast.lng
+                                    ],
+                                }
+                            }
+
+                        }
+                    })
                 )
-                console.log('postResults')
-                console.log(postResults)
+                // console.log('postResults')
+                // console.log(postResults)
                 setPost(postResults.data.listPosts.items)
             } catch (error) {
                 console.error(error);

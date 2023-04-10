@@ -24,7 +24,7 @@ const DestinationSearchScreen = (props) => {
                     // 'details' is provided when fetchDetails = true
                     console.log(data, details);
                     // navigation.navigate('Guests', { viewport: details.geometry.viewport });
-                    navigation.navigate('GuestFilter');
+                    navigation.navigate('GuestFilter', { viewport: details.geometry.viewport });
                 }}
                 fetchDetails
                 styles={{
@@ -32,8 +32,8 @@ const DestinationSearchScreen = (props) => {
                 }}
                 query={{
                     key: 'AIzaSyAhQ14bNITgwLLJa9cfulH7G8Shv8QEEkA',
-                    language: 'zh-cn',
-                    // types: '(cities)',
+                    language: 'en',
+                    types: '(cities)',
                 }}
                 suppressDefaultStyles
                 renderRow={(item) => <SuggestionRow item={item} />}

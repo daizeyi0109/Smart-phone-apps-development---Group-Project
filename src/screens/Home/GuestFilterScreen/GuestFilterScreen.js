@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, Pressable } from 'react-native';
 // Icon
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 const GuestFilterScreen = () => {
 
@@ -12,7 +12,7 @@ const GuestFilterScreen = () => {
     const [infants, setInfants] = useState(0);
 
     const navigation = useNavigation();
-
+    const route = useRoute();
 
     return (
         <View style={{ height: '100%' }}>
@@ -122,15 +122,19 @@ const GuestFilterScreen = () => {
                     //         }
                     //     },
                     // })
-                    // navigation.navigate('HomeTab', {
-                    //     screen: 'Explore',
-                    //     params: {
-                    //         screen: 'SearchResult'
-                    //     }
 
                     // }),
                     navigation.navigate('Explore', {
-                        screen: 'SearchResults'
+                        screen: 'SearchResults',
+                        params: {
+                            screen: 'List',
+                            params: {
+                                guests: adults + children,
+                                viewport: route.params.viewport
+                            }
+
+                        }
+
                     })
 
 

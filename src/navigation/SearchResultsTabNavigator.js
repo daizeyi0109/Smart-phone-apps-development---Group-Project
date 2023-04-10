@@ -13,6 +13,14 @@ const SearchResultsTabNavigator = (props) => {
 
     const route = useRoute();
 
+    // const guests = route.params.guests;
+    const guestsList = route.params;
+    const guests = guestsList.params.guests;
+    const viewport = guestsList.params.viewport;
+    // console.log(guestsList)
+    // console.log("上面是guestlist");
+    // console.log(guests)
+
     return (
         <Tab.Navigator tabBarOptions={{
             activeTintColor: '#f15454',
@@ -20,18 +28,18 @@ const SearchResultsTabNavigator = (props) => {
                 backgroundColor: '#f15454',
             }
         }}>
-            {/* <Tab.Screen name={"list"}>
+            <Tab.Screen name={"List"}>
                 {() => (
-                    <SearchResults posts={posts} />
+                    <SearchResults guests={guests} viewport={viewport} />
                 )}
             </Tab.Screen>
-            <Tab.Screen name={"map"}>
+            <Tab.Screen name={"Map"}>
                 {() => (
-                    <SearchResultsMap posts={posts} />
+                    <SearchResultsMap guests={guests} viewport={viewport} />
                 )}
-            </Tab.Screen> */}
-            <Tab.Screen name={'SearchResults'} component={SearchResults} />
-            <Tab.Screen name={'SearchResultsMap'} component={SearchResultsMap} />
+            </Tab.Screen>
+            {/* <Tab.Screen name={'List'} component={SearchResults} />
+            <Tab.Screen name={'Map'} component={SearchResultsMap} /> */}
 
 
         </Tab.Navigator>

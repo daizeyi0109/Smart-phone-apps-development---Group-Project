@@ -12,10 +12,15 @@ import { API, graphqlOperation } from 'aws-amplify';
 import * as queries from '../../../graphql/queries';
 // Data
 // import place from '../../../../assets/data/feed'
+import { useRoute } from '@react-navigation/native';
 
-const SearchResultMap = () => {
+const SearchResultMap = (props) => {
     const [selectedPlace, setSelectedPlace] = useState()
     const [post, setPost] = useState([]);
+
+    const { guests, viewport } = props
+    console.log("viewport")
+    console.log(viewport)
 
     const width = useWindowDimensions().width
 
@@ -36,7 +41,28 @@ const SearchResultMap = () => {
         const fetchPost = async () => {
             try {
                 const postResults = await API.graphql(
-                    graphqlOperation(queries.listPosts)
+                    graphqlOperation(queries.listPosts, {
+                        filter: {
+                            and: {
+                                maxGuests: {
+                                    ge: guests
+                                },
+                                latitude: {
+                                    between: [
+                                        viewport.southwest.lat,
+                                        viewport.northeast.lat
+                                    ],
+                                },
+                                longitude: {
+                                    between: [
+                                        viewport.southwest.lng,
+                                        viewport.northeast.lng
+                                    ],
+                                }
+                            }
+
+                        }
+                    })
                 )
                 console.log('postResults')
                 console.log(postResults)
