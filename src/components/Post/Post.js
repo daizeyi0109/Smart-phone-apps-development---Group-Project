@@ -52,12 +52,17 @@ const Post = (props) => {
 const styles = StyleSheet.create({
     container: {
         margin: 10,
+        padding: 4,
+        borderWidth: 1,
+        borderRadius: 20,
+        borderColor: "transparent",
+        backgroundColor: "#ffffff"
     },
     image: {
         width: '100%',
         height: 300,
         borderColor: 'red',
-        resizeMode: 'stretch',
+        resizeMode: 'cover',
         borderRadius: 20,
     },
 

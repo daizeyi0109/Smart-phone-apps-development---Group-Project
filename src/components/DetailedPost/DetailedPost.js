@@ -41,8 +41,6 @@ const DetailedPost = (props) => {
         return <Text>No data available</Text>;
     }
     else {
-        console.log('111')
-        console.log(post[0].image)
         return (
             <ScrollView>
                 <View style={styles.container}>

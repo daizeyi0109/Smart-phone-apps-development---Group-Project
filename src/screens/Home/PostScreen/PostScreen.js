@@ -7,6 +7,8 @@ import { API, graphqlOperation } from 'aws-amplify';
 import * as queries from '../../../graphql/queries';
 
 
+
+
 import places from '../../../../assets/data/feed'
 
 
@@ -47,7 +49,7 @@ const PostScreen = (props) => {
     // })
 
     return (
-        <View style={{ backgroundColor: 'white' }}>
+        <View style={{ backgroundColor: 'white', height: '100%' }}>
             <DetailedPost postID={post_id} />
         </View>
     );
