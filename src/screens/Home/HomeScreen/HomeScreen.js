@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Text, ImageBackground, Button, Pressable, ScrollView, FlatList, Image, ActivityIndicator, Dimensions } from 'react-native';
 import { Auth } from 'aws-amplify';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { FontAwesome } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
+
+import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 import Post from '../../../components/Post/Post';
 
 import { API, graphqlOperation } from 'aws-amplify';
@@ -105,7 +106,7 @@ const HomeScreen = () => {
 
 
                 <View style={styles.likeTextContainer}>
-                    <AntDesign name="like1" size={24} color="rgba(78,0,233,0.7)" />
+                    <FontAwesome5 name="fire-alt" size={24} color="red" />
                     <Text style={styles.likeText}>You may like</Text>
                 </View>
 
@@ -114,7 +115,7 @@ const HomeScreen = () => {
 
                 <View style={styles.slidecontainer}>
                     <Swiper showsButtons={false}
-                        autoplay={true}
+                        autoplay={false}
                         loop={false}
                         autoplayTimeout={10}
                         dot={
@@ -134,7 +135,7 @@ const HomeScreen = () => {
                         activeDot={
                             <View
                                 style={{
-                                    backgroundColor: 'rgba(78,0,233,0.7)',
+                                    backgroundColor: 'red',
                                     width: 16,
                                     height: 8,
                                     borderRadius: 4,
@@ -171,7 +172,7 @@ const HomeScreen = () => {
                 /> */}
                 <View style={styles.likeTextContainer}>
                     {/* <AntDesign name="like1" size={24} color="#e50e00" /> */}
-                    <AntDesign name="heart" size={24} color="rgba(78,0,233,0.7)" />
+                    <Ionicons name="heart-circle-outline" size={24} color="red" />
                     <Text style={styles.likeText}>Recommendation</Text>
                 </View>
 
@@ -307,7 +308,7 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
         flex: 1,
         justifyContent: 'center',
-        // borderRadius: 30
+        borderRadius: 10
     }
 
 
