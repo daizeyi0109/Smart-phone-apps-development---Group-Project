@@ -21,7 +21,7 @@ import { useNavigation } from '@react-navigation/native';
 
 
 const ProfilePage = (props) => {
-    const [image, setImage] = useState('/Users/baize/Desktop/SmartApp/AwesomeProject/assets/images/default_robot.jpg');
+    const [image, setImage] = useState('https://github.com/daizeyi0109/SmartApp_hku/blob/Content_development/assets/images/default_robot.jpg?raw=true');
     const navigation = useNavigation()
 
     const [user, setUser] = useState(undefined);
