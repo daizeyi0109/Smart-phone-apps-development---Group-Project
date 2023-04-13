@@ -1,38 +1,5 @@
-// import React from 'react';
-// import { View, StyleSheet, Text } from 'react-native';
-// import { Auth } from 'aws-amplify';
-// import { useNavigation } from '@react-navigation/native';
-// const ProfileScreen = () => {
-//     const navigation = useNavigation()
-//     const signOut = () => {
-//         Auth.signOut();
-//         navigation.navigate('SignIn')
-//     };
 
-//     return (
-//         <View>
-//             <Text
-//                 onPress={signOut}
-//                 style={{
-//                     width: '100%',
-//                     textAlign: 'center',
-//                     color: 'red',
-//                     marginTop: 'auto',
-//                     marginVertical: 20,
-//                     fontSize: 20,
-//                 }}>
-//                 Sign out
-//             </Text>
-//         </View>
-//     );
-// }
-
-// const styles = StyleSheet.create({})
-
-// export default ProfileScreen;
-
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     Text,
     View,
@@ -46,6 +13,7 @@ import { Button, FAB, Card, Portal, Modal, Provider } from 'react-native-paper';
 import { Auth } from 'aws-amplify';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+// import { Auth, Hub } from 'aws-amplify';
 
 // import imgurl from '../../'
 
@@ -55,12 +23,37 @@ import { useNavigation } from '@react-navigation/native';
 const ProfilePage = (props) => {
     const [image, setImage] = useState('/Users/baize/Desktop/SmartApp/AwesomeProject/assets/images/default_robot.jpg');
     const navigation = useNavigation()
+
+    const [user, setUser] = useState(undefined);
+
+    const checkUser = async () => {
+        try {
+            // const authUser = await Auth.currentAuthenticatedUser({ bypassCache: true });
+            const authUser = await Auth.currentAuthenticatedUser({ bypassCache: true });
+            console.log(authUser);
+            console.log('attributes:', authUser.attributes);
+            setUser(authUser.username)
+            console.log('Test user profile loaded');
+            // console.log(user)
+        } catch (error) {
+            setUser(null)
+        }
+
+    }
+
+    useEffect(() => {
+        checkUser();
+        // console.log('Test user profile loaded');
+        // console.log(user)
+    }, []);
+
+
+
+    // Sign Out
     const signOut = () => {
         Auth.signOut();
         navigation.navigate('SignIn')
     };
-
-
 
     // Alert_logout_tips
     const alert_logout = () => {
@@ -94,7 +87,7 @@ const ProfilePage = (props) => {
                         {/* </TouchableOpacity> */}
 
                         {/* Username */}
-                        <Text style={styles.accountname}>daizy</Text>
+                        <Text style={styles.accountname}>{user}</Text>
                         {/* Usertype */}
                         <Text style={[styles.accountname, { fontSize: 15 }]}>
                             Your Profile

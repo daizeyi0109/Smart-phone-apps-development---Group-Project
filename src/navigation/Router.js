@@ -39,6 +39,8 @@ const Navigation = () => {
     }
     useEffect(() => {
         checkUser();
+        console.log('Test user');
+        console.log(user)
     }, []);
 
     useEffect(() => {
