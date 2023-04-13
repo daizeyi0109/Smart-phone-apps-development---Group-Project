@@ -28,13 +28,11 @@ const ProfilePage = (props) => {
 
     const checkUser = async () => {
         try {
-            // const authUser = await Auth.currentAuthenticatedUser({ bypassCache: true });
             const authUser = await Auth.currentAuthenticatedUser({ bypassCache: true });
             console.log(authUser);
             console.log('attributes:', authUser.attributes);
             setUser(authUser.username)
             console.log('Test user profile loaded');
-            // console.log(user)
         } catch (error) {
             setUser(null)
         }
@@ -43,8 +41,7 @@ const ProfilePage = (props) => {
 
     useEffect(() => {
         checkUser();
-        // console.log('Test user profile loaded');
-        // console.log(user)
+
     }, []);
 
 
@@ -103,13 +100,27 @@ const ProfilePage = (props) => {
                             style={[styles.button, { marginTop: 0 }]}
                             contentStyle={styles.buttoncontent}
                             color="rgb(255,255,255)"
-                        // onPress={() => props.navigation.navigate('Editprofile', { account_info: account_info })}
+                            // onPress={() => props.navigation.navigate('Editprofile', { account_info: account_info })}
+                            onPress={() => navigation.navigate('EditProfile')}
                         >
                             Edit
                         </Button>
 
                     </Card>
 
+
+                    <Card style={styles.buttonlist}>
+                        <Button icon="account-edit" mode="contained"
+                            style={[styles.button, { marginTop: 0 }]}
+                            contentStyle={styles.buttoncontent}
+                            color="rgb(255,255,255)"
+                            // onPress={() => props.navigation.navigate('Editprofile', { account_info: account_info })}
+                            onPress={() => navigation.navigate('EditPassword')}
+                        >
+                            Change Password
+                        </Button>
+
+                    </Card>
                     {/* Focused & Search*/}
 
 
@@ -139,7 +150,7 @@ const ProfilePage = (props) => {
                     </Card>
 
 
-                    <View
+                    {/* <View
                         style={styles.fab}
                         // small={true}
                         // size={5}
@@ -148,7 +159,7 @@ const ProfilePage = (props) => {
                         onPress={() => console.log("Pressed")}
                     >
                         <AntDesign name="plus" size={15} color="white" />
-                    </View>
+                    </View> */}
                 </View>
             </Portal>
         </Provider>

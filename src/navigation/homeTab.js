@@ -6,11 +6,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 // Screen
 import HomeScreen from '../screens/Home/HomeScreen';
 import ProfileScreen from '../screens/Profile/ProfileScreen';
-import ChatScreen from '../screens/Chat/ChatScreen';
 import DestinationSearchScreen from '../../src/screens/Home/DestinationSearchScreen/DestinationSearchScreen';
-// import SaveScreen from '../screens/Save/SaveScreen';
 import ExploreNavigator from './ExploreNavigator';
-// import SearchResultMap from '../screens/Home/SearchResultMap/SearchResultMap';
+
 
 
 const Tab = createBottomTabNavigator();
@@ -60,7 +58,6 @@ const HomeTab = () => {
 
             <Tab.Screen name="Explore" component={ExploreNavigator} options={{ headerShown: false }} />
             <Tab.Screen name="Search" component={DestinationSearchScreen} options={{ headerShown: false }} />
-            {/* <Tab.Screen name="Save" component={SaveScreen} options={{ headerShown: false }} /> */}
             <Tab.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} />
 
         </Tab.Navigator>

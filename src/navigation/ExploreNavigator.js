@@ -16,6 +16,7 @@ const ExploreNavigator = (props) => {
                 component={HomeScreen}
                 options={{
                     headerShown: false,
+
                 }}
             />
 
@@ -24,6 +25,7 @@ const ExploreNavigator = (props) => {
                 component={SearchResultsTabNavigator}
                 options={{
                     title: 'Search your destination',
+                    headerBackTitle: "",
                 }}
             />
         </Stack.Navigator>

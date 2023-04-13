@@ -15,6 +15,8 @@ import DestinationSearchScreen from '../screens/Home/DestinationSearchScreen/Des
 import GuestFilterScreen from '../screens/Home/GuestFilterScreen/GuestFilterScreen';
 import SearchResultScreen from '../screens/Home/SearchResultScreen/SearchResultScreen'
 import PostScreen from "../screens/Home/PostScreen/PostScreen";
+import EditProfileScreen from '../screens/EditProfile/EditProfileScreen';
+import EditPasswordScreen from '../screens/EditPassword/EditPassword';
 
 import homeTab from './HomeTab';
 
@@ -65,10 +67,14 @@ const Navigation = () => {
         )
     }
 
+
+
     return (
         <NavigationContainer>
             {/* <Stack.Navigator screenOptions={{ headerShown: false }}> */}
             <Stack.Navigator>
+
+
 
                 <Stack.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false }} />
@@ -104,6 +110,23 @@ const Navigation = () => {
                     options={{
                         title: "Accommodation"
                     }}
+                />
+                <Stack.Screen
+                    name={"EditProfile"}
+                    component={EditProfileScreen}
+                    options={{
+                        headerShown: false
+                    }}
+
+                />
+
+                <Stack.Screen
+                    name={"EditPassword"}
+                    component={EditPasswordScreen}
+                    options={{
+                        headerShown: false
+                    }}
+
                 />
                 {/* <Stack.Screen name="SearchResult" component={SearchResultScreen}
                     options={() => ({

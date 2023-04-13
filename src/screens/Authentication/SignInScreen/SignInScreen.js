@@ -35,7 +35,7 @@ const SignInScreen = () => {
         // console.warn('Sign in button pressed')
         // Validate user
 
-        navigation.navigate('HomeTab')
+
 
         // const response = await Auth.signIn(data.username, data.password);
         if (loading) {
@@ -45,6 +45,7 @@ const SignInScreen = () => {
         try {
             const response = await Auth.signIn(data.username, data.password);
             console.log(data)
+            navigation.navigate('HomeTab')
 
         } catch (error) {
             // console.log('error signing in', error);

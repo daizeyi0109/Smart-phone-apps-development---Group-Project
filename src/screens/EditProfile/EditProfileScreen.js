@@ -1,55 +1,87 @@
 import { View, Text, StyleSheet, ScrollView, Alert } from 'react-native'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import React from 'react'
 import { useNavigation } from '@react-navigation/native';
 
+import CustomInput from '../../components/CustomInput/CustomInput'
+import CustomButton from '../../components/CustomButton/CustomButton'
+import SocialSignButton from '../../components/SocialSignButton/SocialSignButton';
 
-import CustomInput from '../../../components/CustomInput/CustomInput'
-import CustomButton from '../../../components/CustomButton/CustomButton'
-import SocialSignButton from '../../../components/SocialSignButton/SocialSignButton';
 
 import { useForm } from 'react-hook-form';
 
 import { Auth } from 'aws-amplify';
 
-
 const EMAIL_REGEX =
     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-const SignUpScreen = () => {
-    // const [username, setUsername] = useState('');
-    // const [email, setEmail] = useState('');
-    // const [password, setPassword] = useState('');
-    // const [passwordRepeat, setPasswordRepeat] = useState('');
+
+const EditProfileScreen = () => {
 
     const navigation = useNavigation();
+
+
+
+    const [user, setUser] = useState(undefined);
+
+    const [name, setName] = useState(undefined);
+
+
+    const checkUser = async () => {
+        try {
+            const authUser = await Auth.currentAuthenticatedUser({ bypassCache: true });
+            console.log(authUser);
+            console.log('attributes:', authUser.attributes);
+            // console.log(typeof authUser.name)
+            setUser(authUser.username)
+            setName(authUser.name)
+            console.log('Test edit profile loaded');
+        } catch (error) {
+            setUser(null)
+        }
+
+    }
+
+    useEffect(() => {
+        checkUser();
+    }, []);
+
 
     const { control, handleSubmit, watch } = useForm(
         {
             defaultValues: {
-                username: 'Default username',
+                // username: user,
+                // name: 
             }
         }
     );
-    // formState: { errors },
 
-    const pwd = watch('password');
+    const pwd = watch('newPassword');
 
 
-    const onRegisterPressed = async (data) => {
+    const onConfirmPressed = async (data) => {
         // console.warn('Register button pressed')
         // navigation.navigate('ConfirmEmail')
-        const { username, password, email, name, address } = data
+        const { oldPassword, newPassword, name, address } = data
         try {
-            const response = Auth.signUp({
-                username,
-                password,
-                attributes: { email, name, address },
-            })
-            console.log(response)
-            navigation.navigate('ConfirmEmail', { username })
+
+
+
+            const authUser = await Auth.currentAuthenticatedUser({ bypassCache: true });
+
+            const response = await Auth.updateUserAttributes(authUser, {
+                // 'password': password,
+                'name': name,
+                'address': address
+            });
+
+
+            // console.log("Edit name wrong", response)
+            Alert.alert('Oops', response)
+            // navigation.navigate('ConfirmEmail', { username })
+            navigation.navigate('Profile')
         } catch (error) {
-            Alert.alert('Oops', error.message)
+            // Alert.alert('Oops', error.message)
         }
     };
 
@@ -61,15 +93,16 @@ const SignUpScreen = () => {
         console.warn('Conditions link pressed')
     }
 
-    const onSignInPressed = () => {
-        console.warn('Sign Up button pressed')
-        navigation.navigate('SignIn')
+    const onProfilePressed = () => {
+        // console.warn('Sign Up button pressed')
+        navigation.navigate('Profile')
     }
 
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.root}>
-                <Text style={styles.title}>Create an account</Text>
+                <Text style={styles.title}>Edit Your Profile</Text>
+                <Text style={styles.title}>{user}</Text>
 
                 {/* <CustomInput placeholder='Username' value={username} setValue={setUsername} />
                 <CustomInput placeholder='Email' value={email} setValue={setEmail} />
@@ -92,28 +125,27 @@ const SignUpScreen = () => {
                         },
                     }}
                 />
-                <CustomInput placeholder='Username' name='username' control={control} rules={{
-                    required: 'Username is required',
-                    minLength: {
-                        value: 3,
-                        message: 'Username should be at least 3 characters long',
-                    },
-                    maxLength: {
-                        value: 24,
-                        message: 'Username should be max 24 characters long',
-                    },
-                }} />
-                <CustomInput placeholder='Email' name='email' control={control} rules={{
-                    required: 'Email is required',
-                    pattern: { value: EMAIL_REGEX, message: 'Email is invalid' },
-                }} />
-
-                <CustomInput placeholder='Address' name='address' control={control} rules={{
+                <CustomInput placeholder='New Address' name='address' control={control} rules={{
                     required: 'address is required',
                     // pattern: { value: EMAIL_REGEX, message: 'Email is invalid' },
                 }} />
 
-                <CustomInput placeholder='Password' name='password' control={control}
+                {/* <CustomInput placeholder='Email' name='email' control={control} rules={{
+                    required: 'Email is required',
+                    pattern: { value: EMAIL_REGEX, message: 'Email is invalid' },
+                }} /> */}
+
+                {/* <CustomInput placeholder='Old Password' name='oldPassword' control={control}
+                    rules={{
+                        required: 'Old Password is required',
+                        minLength: {
+                            value: 8,
+                            message: 'Password should be at least 8 characters long',
+                        },
+                    }}
+                    secureTextEntry='True' />
+
+                <CustomInput placeholder='New Password' name='newPassword' control={control}
                     rules={{
                         required: 'Password is required',
                         minLength: {
@@ -123,27 +155,26 @@ const SignUpScreen = () => {
                     }}
                     secureTextEntry='True' />
 
-                <CustomInput placeholder='Repeat Password' name='passwordRepeat' control={control}
+                <CustomInput placeholder='Repeat New Password' name='passwordRepeat' control={control}
                     rules={{
                         validate: value => value === pwd || 'Password do not match',
                     }}
-                    secureTextEntry='True' />
+                    secureTextEntry='True' /> */}
 
 
 
-                <CustomButton onPress={handleSubmit(onRegisterPressed)} text='Register' />
+                <CustomButton onPress={handleSubmit(onConfirmPressed)} text='Confirm' />
+
                 <Text style={styles.text}>
-                    By registering, you confirm that you have read and understood the
+                    By Editing profile, you confirm that you have read and understood the
                     <Text style={styles.link} onPress={onTermsPressed}> terms</Text> and <Text style={styles.link} onPress={onConditionsPressed}>conditions</Text>
                 </Text>
 
-                <SocialSignButton />
 
-
-                <CustomButton onPress={onSignInPressed} text="Have an account? Sign In" type='TERTIARY' />
+                <CustomButton onPress={onProfilePressed} text="Not Now ? Back" type='TERTIARY' />
             </View>
         </ScrollView>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -170,4 +201,5 @@ const styles = StyleSheet.create({
         color: "#FDB075"
     }
 })
-export default SignUpScreen
+
+export default EditProfileScreen;
