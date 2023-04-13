@@ -14,6 +14,8 @@ import feed from '../../../../assets/data/feed';
 import Swiper from 'react-native-swiper';
 import WaterfallFlow from 'react-native-waterfall-flow'
 
+import { LogBox } from 'react-native';
+
 
 
 const item = feed[1];
@@ -57,6 +59,7 @@ const HomeScreen = () => {
                 // console.error(error);
             }
         }
+        LogBox.ignoreAllLogs(); //Ignore all log notificationsa
         fetchPost()
     })
 
