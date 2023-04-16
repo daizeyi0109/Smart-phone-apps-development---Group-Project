@@ -2,7 +2,7 @@ import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView, Alert, 
 import { useState } from 'react';
 import React from 'react'
 
-import Logo from '../../../../assets/images/Logo_2.png'
+import Logo from '../../../../assets/images/Logo_3.png'
 // import CustomInput from '../../components/CustomInput'
 import CustomInput from '../../../components/CustomInput/CustomInput'
 import CustomButton from '../../../components/CustomButton/CustomButton'
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     logo: {
-        width: '70%',
+        width: '90%',
         maxWidth: 300,
         maxHight: 200,
     }
