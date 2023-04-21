@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     likeText: {
         marginLeft: 10,
         fontSize: 30,
-        fontFamily: 'Arial Rounded MT Bold',
+
     },
     hotSearchContainer: {
         width: '100%',

@@ -22,10 +22,10 @@ const GuestFilterScreen = () => {
                 <View>
                     <View style={{ marginBottom: 10, flexDirection: 'row' }}>
                         <MaterialCommunityIcons name="human-non-binary" size={30} color="black" />
-                        <Text style={{ fontWeight: 'bold', fontSize: 25, fontFamily: 'Arial Rounded MT Bold' }}>Adults</Text>
+                        <Text style={{ fontWeight: 'bold', fontSize: 25 }}>Adults</Text>
                     </View>
 
-                    <Text style={{ color: '#8d8d8d', marginLeft: 5, fontFamily: 'Arial Rounded MT Bold' }}>(Age 13 or above)</Text>
+                    <Text style={{ color: '#8d8d8d', marginLeft: 5 }}>(Age 13 or above)</Text>
                 </View>
 
                 {/* Button */}
@@ -36,7 +36,7 @@ const GuestFilterScreen = () => {
                         <AntDesign name="minuscircleo" size={28} color="#474747" />
                     </Pressable>
 
-                    <Text style={{ marginHorizontal: 20, fontSize: 18, fontFamily: 'Arial Rounded MT Bold' }}>{adults}</Text>
+                    <Text style={{ marginHorizontal: 20, fontSize: 18 }}>{adults}</Text>
 
                     <Pressable
                         style={styles.button}
@@ -53,10 +53,10 @@ const GuestFilterScreen = () => {
                 <View>
                     <View style={{ marginBottom: 10, flexDirection: 'row' }}>
                         <MaterialCommunityIcons name="human-child" size={30} color="black" />
-                        <Text style={{ fontWeight: 'bold', fontSize: 25, fontFamily: 'Arial Rounded MT Bold' }}>Children</Text>
+                        <Text style={{ fontWeight: 'bold', fontSize: 25 }}>Children</Text>
                     </View>
 
-                    <Text style={{ color: '#8d8d8d', marginLeft: 5, fontFamily: 'Arial Rounded MT Bold' }}>(Ages 2-13)</Text>
+                    <Text style={{ color: '#8d8d8d', marginLeft: 5 }}>(Ages 2-13)</Text>
                 </View>
 
                 {/* Button */}
@@ -67,7 +67,7 @@ const GuestFilterScreen = () => {
                         <AntDesign name="minuscircleo" size={28} color="#474747" />
                     </Pressable>
 
-                    <Text style={{ marginHorizontal: 20, fontSize: 18, fontFamily: 'Arial Rounded MT Bold' }}>{children}</Text>
+                    <Text style={{ marginHorizontal: 20, fontSize: 18 }}>{children}</Text>
 
                     <Pressable
                         style={styles.button}
@@ -84,10 +84,10 @@ const GuestFilterScreen = () => {
                 <View>
                     <View style={{ marginBottom: 10, flexDirection: 'row' }}>
                         <MaterialCommunityIcons name="human-baby-changing-table" size={30} color="black" />
-                        <Text style={{ fontWeight: 'bold', fontSize: 25, fontFamily: 'Arial Rounded MT Bold' }}>Infants</Text>
+                        <Text style={{ fontWeight: 'bold', fontSize: 25 }}>Infants</Text>
                     </View>
 
-                    <Text style={{ color: '#8d8d8d', marginLeft: 5, fontFamily: 'Arial Rounded MT Bold' }}>(Ages 2-13)</Text>
+                    <Text style={{ color: '#8d8d8d', marginLeft: 5 }}>(Ages 2-13)</Text>
                 </View>
 
                 {/* Button */}
@@ -98,7 +98,7 @@ const GuestFilterScreen = () => {
                         <AntDesign name="minuscircleo" size={28} color="#474747" />
                     </Pressable>
 
-                    <Text style={{ marginHorizontal: 20, fontSize: 18, fontFamily: 'Arial Rounded MT Bold' }}>{infants}</Text>
+                    <Text style={{ marginHorizontal: 20, fontSize: 18 }}>{infants}</Text>
 
                     <Pressable
                         style={styles.button}

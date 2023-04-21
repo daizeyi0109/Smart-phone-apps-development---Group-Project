@@ -12,6 +12,7 @@ import PostScreen from './src/screens/Home/PostScreen/PostScreen';
 
 import awsconfig from './src/aws-exports'
 
+
 Amplify.configure(awsconfig)
 
 function App() {
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     backgroundColor: '#F9FbFC',
-    fontFamily: 'Arial Rounded MT Bold'
+
   }
 });
 

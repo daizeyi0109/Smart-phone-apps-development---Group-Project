@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     },
     locationText: {
 
-        fontFamily: 'Arial Rounded MT Bold',
+
     }
 })
 

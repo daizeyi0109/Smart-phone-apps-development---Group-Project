@@ -24,6 +24,9 @@ const CustomInput = ({ control, name, rules = {}, placeholder, secureTextEntry }
                             placeholder={placeholder}
                             style={styles.input}
                             secureTextEntry={secureTextEntry}
+                        // keyboardType={'visible-password'}
+                        // multiline={true}
+                        // autoCapitalize={'none'}
                         />
                     </View>
                     {error && (

@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
         height: 128,
         borderRadius: 128,
         borderColor: 'red',
-        backgroundColor: "red"
+        // backgroundColor: "red"
     },
     accountname: {
         fontSize: 30,

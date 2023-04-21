@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     hotText: {
-        fontFamily: 'Arial Rounded MT Bold',
+
         fontSize: 13,
         color: '#fa620c'
 

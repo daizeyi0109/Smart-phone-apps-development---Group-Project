@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
 
     },
     marketText: {
-        fontFamily: 'Arial Rounded MT Bold',
+
         fontWeight: 'bold'
 
     }

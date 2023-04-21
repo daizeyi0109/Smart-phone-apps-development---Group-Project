@@ -71,11 +71,6 @@ const SignUpScreen = () => {
             <View style={styles.root}>
                 <Text style={styles.title}>Create an account</Text>
 
-                {/* <CustomInput placeholder='Username' value={username} setValue={setUsername} />
-                <CustomInput placeholder='Email' value={email} setValue={setEmail} />
-                <CustomInput placeholder='Password' value={password} setValue={setPassword} secureTextEntry='True' />
-                <CustomInput placeholder='Repeat Password' value={passwordRepeat} setValue={setPasswordRepeat} secureTextEntry='True' /> */}
-
                 <CustomInput
                     name="name"
                     control={control}

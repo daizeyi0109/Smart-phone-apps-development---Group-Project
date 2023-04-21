@@ -104,10 +104,6 @@ const EditProfileScreen = () => {
                 <Text style={styles.title}>Edit Your Profile</Text>
                 <Text style={styles.title}>{user}</Text>
 
-                {/* <CustomInput placeholder='Username' value={username} setValue={setUsername} />
-                <CustomInput placeholder='Email' value={email} setValue={setEmail} />
-                <CustomInput placeholder='Password' value={password} setValue={setPassword} secureTextEntry='True' />
-                <CustomInput placeholder='Repeat Password' value={passwordRepeat} setValue={setPasswordRepeat} secureTextEntry='True' /> */}
 
                 <CustomInput
                     name="name"
@@ -130,36 +126,7 @@ const EditProfileScreen = () => {
                     // pattern: { value: EMAIL_REGEX, message: 'Email is invalid' },
                 }} />
 
-                {/* <CustomInput placeholder='Email' name='email' control={control} rules={{
-                    required: 'Email is required',
-                    pattern: { value: EMAIL_REGEX, message: 'Email is invalid' },
-                }} /> */}
 
-                {/* <CustomInput placeholder='Old Password' name='oldPassword' control={control}
-                    rules={{
-                        required: 'Old Password is required',
-                        minLength: {
-                            value: 8,
-                            message: 'Password should be at least 8 characters long',
-                        },
-                    }}
-                    secureTextEntry='True' />
-
-                <CustomInput placeholder='New Password' name='newPassword' control={control}
-                    rules={{
-                        required: 'Password is required',
-                        minLength: {
-                            value: 8,
-                            message: 'Password should be at least 8 characters long',
-                        },
-                    }}
-                    secureTextEntry='True' />
-
-                <CustomInput placeholder='Repeat New Password' name='passwordRepeat' control={control}
-                    rules={{
-                        validate: value => value === pwd || 'Password do not match',
-                    }}
-                    secureTextEntry='True' /> */}
 
 
 

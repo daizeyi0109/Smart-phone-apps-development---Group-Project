@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { Marker } from 'react-native-maps'
 
+
 const MapMarket = (props) => {
     // const { coordinate, price } = props
     const coordinate = props.coordinate
@@ -34,7 +35,6 @@ const styles = StyleSheet.create({
 
     },
     marketText: {
-        fontFamily: 'Arial Rounded MT Bold',
         fontWeight: 'bold'
 
     }

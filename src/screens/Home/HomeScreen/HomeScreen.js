@@ -97,7 +97,7 @@ const HomeScreen = () => {
 
                     <ImageBackground source={require('../../../../assets/images/bgc.jpg')} style={styles.image}>
                         {/* Title */}
-                        <Text style={styles.title}>Live Near</Text>
+                        <Text style={styles.title}>Easy Rent</Text>
                         {/* Button */}
                         <Pressable style={styles.button} onPress={onExplorePressed}>
                             <Text style={styles.buttonText}>Explore nearby stays</Text>
@@ -288,9 +288,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     likeText: {
+        fontWeight: 'bold',
         marginLeft: 10,
         fontSize: 20,
-        fontFamily: 'Arial Rounded MT Bold',
+
     },
     slide: {
         flex: 1,
