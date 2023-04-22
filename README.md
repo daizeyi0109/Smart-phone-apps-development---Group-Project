@@ -4,7 +4,7 @@ Easy Rent App is a mobile application designed to help renters easily find suita
 
 And this is the HKU CompSc COMP7506 Smart phone apps development  - Group Project
 
-## Usage
+## Version
 
 Version 1.0
 
@@ -25,7 +25,7 @@ Version 1.0
 
 ## Configuration
 
-Before running the application, you will need to configure the Google Maps API key in the `app.json` file. You can obtain a Google Maps API key by following the instructions on the Google Maps Platform website.
+Before running the application, you will need to configure the dependencies in the `app.json` file. 
 
 ```json
 {
