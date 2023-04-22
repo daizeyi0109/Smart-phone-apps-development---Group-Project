@@ -2,9 +2,11 @@
 
 Easy Rent App is a mobile application designed to help renters easily find suitable housing information. Built using React Native and AWS Amplify, this application leverages GraphQL API and Google Maps Platform to provide users with an efficient and user-friendly experience.
 
-And this is the HKU CompSc COMP7506 Smart phone apps development  - Group Project
+And this is the HKU CompSc COMP7506 Smart phone apps development  - Group Project 
 
-## Version
+(Group 30, Dai Zeyi / Feng Zihao)
+
+## Usage
 
 Version 1.0
 
@@ -25,7 +27,7 @@ Version 1.0
 
 ## Configuration
 
-Before running the application, you will need to configure the dependencies in the `app.json` file. 
+Before running the application, you will need to configure the Google Maps API key in the `app.json` file. You can obtain a Google Maps API key by following the instructions on the Google Maps Platform website.
 
 ```json
 {
@@ -91,7 +93,7 @@ Once the application is running, you can use it to search for rental properties,
 
 ## License
 
-TThis software is for learning and communication only.
+This software is for learning and communication only.
 
 ## Contact Us
 
